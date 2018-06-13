@@ -1,3 +1,5 @@
+'use strict';
+var http    =  require('http');
 var express =  require("express");
 var app = express();
 var port = process.env.PORT || 8080;
@@ -12,7 +14,7 @@ var config = require('./config/config');
 var auth = require('./config/auth');
 var passport = require('passport');
 var TwitterStrategy = require("passport-twitter").Strategy;
-
+var routes = require('./routes/routes');
 require('./model/db');
 require('./model/user');
 
@@ -23,7 +25,7 @@ mongoose.connection.on('open' ,  function(err){
         console.log("Connected to the Mongo Database");
     }
 
-
+    app.use(express.static("www"));
     app.use(morgan('dev'));
     app.use(cors());
     app.use(bodyParser.urlencoded({extended: false}));
@@ -32,7 +34,7 @@ mongoose.connection.on('open' ,  function(err){
     app.use(multer);
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static("www"));
+
 
 /* Manage CORS Access for ALL requests/responses */
 app.use(function(req, res, next) {  
@@ -49,17 +51,29 @@ app.use(function(req, res, next) {
     }
 });
 
-
-app.get('/', function(req, res) {  
-    res.send('Hello! The API ladning is at http://localhost:' + port + '/app_api');
+app.get('/', function(req, res){
+    setInterval(function() {
+        console.log("you would be seeing the logs of your app");
+    }, 3000);
+    setInterval(function() {
+        console.log("right here.");
+    }, 1500);
+    setInterval(function() {
+        console.log("as it runs");
+    }, 1500);
+    setInterval(function() {
+        console.log("isn't that exciting?");
+    }, 5000);
+    res.end("Hello world.  I'm demonstrating the functionality of /dash.html by logging test messages on an interval.");
 });
 
-app.listen(port, function(){
-    console.log("Running server on port -> " + port);
-});
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("Application now running on port", port);
+  });
+
 
 // Export app
 exports = module.exports = app;
 })
 
- routes = require('./routes/routes');

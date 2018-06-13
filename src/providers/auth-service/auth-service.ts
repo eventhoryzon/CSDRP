@@ -4,6 +4,7 @@ import { Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
+
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -11,7 +12,7 @@ import { Storage } from '@ionic/storage';
   for more info on providers and Angular 2 DI.
 */
 
-let apiUrl = 'http://127.0.0.1:8080/';
+let apiUrl = 'http://localhost:8080/';
 
 
 @Injectable()
