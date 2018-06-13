@@ -29,7 +29,7 @@ export class Signup {
       'firstname' :['', Validators.compose([Validators.required,Validators.minLength(3),Validators.pattern('[a-zA-Z ]*'),Validators.maxLength(15)])],
       'lastname' : ['', Validators.compose([Validators.required,Validators.minLength(3),Validators.pattern('[a-zA-Z ]*'),Validators.maxLength(15)])],
       'companyname' : ['', Validators.compose([Validators.required,Validators.minLength(3),Validators.pattern('[a-zA-Z ]*'),Validators.maxLength(15)])],
-      'companyemail' : ['', Validators.compose([Validators.required, EmailValidator.emailValidator])],
+      'companywebsite' : ['', Validators.compose([Validators.required , Validators.maxLength(30)])],
       'email' : ['', Validators.compose([Validators.required, EmailValidator.emailValidator])],
       'mobilenumber' :['', Validators.compose([Validators.required,Validators.minLength(10)])],
       'password' : ['', Validators.compose([Validators.required,Validators.minLength(8),Validators.maxLength(15)])],

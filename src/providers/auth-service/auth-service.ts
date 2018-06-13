@@ -7,12 +7,9 @@ import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the AuthServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
 */
 
-let apiUrl = 'http://localhost:8080/';
+let apiUrl = 'http://127.0.0.1:8080/';
 
 
 @Injectable()

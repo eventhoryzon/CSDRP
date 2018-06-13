@@ -10,7 +10,7 @@ var functions = {
         if(err) throw err;
 
         if(!user){
-            res.status(403).send({success: false, msg: 'Authentication has failed , User with that email cant be Found'});
+            res.status(403).send({success: false, msg: 'something wrong in authentication either no email '});
         }
         else{
             user.comparePassword(req.body.password, function(err,isMatch){

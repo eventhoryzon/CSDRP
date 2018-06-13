@@ -25,10 +25,10 @@
                       <p>Please enter a valid Company Name.</p>
                   </ion-item>
     <ion-item>
-        <ion-label stacked>Company Email</ion-label>
-        <ion-input  formControlName="companyemail" type="text" placeholder="Company Email" ></ion-input>
+        <ion-label stacked>Company Website</ion-label>
+        <ion-input  formControlName="companywebsite" type="text" placeholder="https://www.domainname.com" ></ion-input>
       </ion-item> 
-      <ion-item *ngIf="!userregform.controls.companyemail.valid  && (userregform.controls.companyemail.dirty || submitAttempt)">
+      <ion-item *ngIf="!userregform.controls.companywebsite.valid  && (userregform.controls.companywebsite.dirty || submitAttempt)">
                   <p>Please enter a valid Company Email.</p>
               </ion-item>
               <ion-item>

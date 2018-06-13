@@ -1,4 +1,4 @@
-'use strict';
+
 var http    =  require('http');
 var express =  require("express");
 var app = express();
@@ -14,7 +14,7 @@ var config = require('./config/config');
 var auth = require('./config/auth');
 var passport = require('passport');
 var TwitterStrategy = require("passport-twitter").Strategy;
-var routes = require('./routes/routes');
+
 require('./model/db');
 require('./model/user');
 
@@ -45,6 +45,16 @@ app.use(function(req, res, next) {
     /* Allow access for any of the following Http request types */
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     if (req.method === 'OPTIONS') {
+        console.log('!OPTIONS');
+        var headers = {};
+        // IE8 does not allow domains to be specified, just the *
+        // headers["Access-Control-Allow-Origin"] = req.headers.origin;
+        headers["Access-Control-Allow-Origin"] = "*";
+        headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+        headers["Access-Control-Allow-Credentials"] = false;
+        headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+        headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
+        res.writeHead(200, headers);
         res.end();
     } else {
         next();
@@ -67,13 +77,15 @@ app.get('/', function(req, res){
     res.end("Hello world.  I'm demonstrating the functionality of /dash.html by logging test messages on an interval.");
 });
 
-var server = app.listen(process.env.PORT || 8080, function () {
+var server = app.listen(port, function () {
     var port = server.address().port;
     console.log("Application now running on port", port);
   });
+
 
 
 // Export app
 exports = module.exports = app;
 })
 
+ var routes = require('./routes/routes');
