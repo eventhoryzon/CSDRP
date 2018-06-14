@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams,LoadingController, ToastController } from 'ionic-angular';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
-import { Http } from '@angular/http';
-import { Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'page-home',
