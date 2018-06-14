@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
   Generated class for the AuthServiceProvider provider.
 */
 
-let apiUrl = 'http://127.0.0.1:8080/';
+let apiUrl = '/';
 
 
 @Injectable()
