@@ -8,7 +8,6 @@ import { Http, Headers } from '@angular/http';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  loading : any;
 
   constructor(public http : Http,public navCtrl: NavController,public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
 
