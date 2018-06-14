@@ -1,5 +1,7 @@
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
+var LocalStrategy    = require('passport-local').Strategy;
+var TwitterStrategy  = require('passport-twitter').Strategy;
 var User = require('../model/user');
 var config = require('../config/config');
 var auth = require('../config/auth');
@@ -45,7 +47,7 @@ module.exports = function(passport){
 
     },
     function(token, tokenSecret, profile, done) {
-      console.log(profile);
+
         // make the code asynchronous
     // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
@@ -80,7 +82,6 @@ module.exports = function(passport){
             });
 
     });
-
     }));
 
-}
+};

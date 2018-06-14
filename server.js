@@ -12,7 +12,10 @@ var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var config = require('./config/config'); 
 var auth = require('./config/auth');
+var OAuth2 = require('OAuth').OAuth2; 
 var passport = require('passport');
+var passportlocal = require('passport-local');
+var passportconfig = require('./config/passport');
 var TwitterStrategy = require("passport-twitter").Strategy;
 
 require('./model/db');
@@ -32,8 +35,12 @@ mongoose.connection.on('open' ,  function(err){
     app.use(bodyParser.json());
     app.use(routes);
     app.use(multer);
+    require('./routes/auth');
     app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(passportconfig);
+    app.use(TwitterStrategy);
+   
+
 
 
 /* Manage CORS Access for ALL requests/responses */

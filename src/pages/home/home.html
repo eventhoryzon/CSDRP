@@ -1,19 +1,19 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Messenger
-    </ion-title>
-  </ion-navbar>
+  <ion-navbar color='fulldark'>
+    <img src="assets/imgs/logo1.png" height="42" width="42" class="navbarLogo"/>
+ </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <img src="assets/imgs/logo2.png" class="logo"/>
     <h2> Welcome to Customer Support Desk </h2>
   Your Customer support Desk 
   <p>
   Please login into your twitter account
   </p>
-  <button id="b1" ion-button block color="energy" (click)="twitterAuth()">TwitterAuth</button>
+  <a href="https://localhost:8080/auth/twitter" class="undecorated-link">
+    
+</a>
+  <button id="b1" ion-button block color="light" (click)="twitterAuth()"><img src="/assets/imgs/logo1.png" height="42" width="42"> Login </button>
   
 
 </ion-content>

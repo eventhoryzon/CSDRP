@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var auth = require('../config/auth');
 
 var loginactions = require('../methods/loginactions');
 
@@ -33,19 +34,6 @@ router.delete('/deleteuser/:id',loginactions.deleteuser);
     });
 
     // facebook routes
-
-    // =====================================
-    // TWITTER ROUTES ======================
-    // =====================================
-    // route for twitter authentication and login
-    router.get('/auth/twitter', passport.authenticate('twitter'));
-
-    // handle the callback after twitter has authenticated the user
-    router.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
-        }));
 
 
 // route middleware to make sure a user is logged in
