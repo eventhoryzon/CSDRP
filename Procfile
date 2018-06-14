@@ -1,1 +1,1 @@
-web: npm run build && npm start 
+web: ./node_modules/.bin/forever -m 5 npm run build && npm start 
