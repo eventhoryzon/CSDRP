@@ -34,13 +34,9 @@ mongoose.connection.on('open' ,  function(err){
     app.use(bodyParser.json());
     app.use(routes);
     app.use(multer);
-    require('./routes/auth');
     app.use(passport.initialize());
     app.use(passportconfig);
-    app.use(TwitterStrategy);
    
-
-
 
 /* Manage CORS Access for ALL requests/responses */
 app.use(function(req, res, next) {  
