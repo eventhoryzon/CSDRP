@@ -33,8 +33,17 @@ router.delete('/deleteuser/:id',loginactions.deleteuser);
         res.redirect('/');
     });
 
-    // facebook routes
-
+// =====================================
+    // TWITTER ROUTES ======================
+    // =====================================
+    router.get('/auth/twitter', 
+    passport.authenticate('twitter'),
+    function(req, res) {}); // empty route handler function, it won't be triggered
+router.get('/auth/twitter/callback', 
+    passport.authenticate('twitter', { 
+                           successRedirect: '/success',
+                           failureRedirect: '/login' }),
+    function(req, res) {}); // route handler
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

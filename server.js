@@ -12,7 +12,6 @@ var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var config = require('./config/config'); 
 var auth = require('./config/auth');
-var OAuth2 = require('OAuth').OAuth2; 
 var passport = require('passport');
 var passportlocal = require('passport-local');
 var passportconfig = require('./config/passport');
