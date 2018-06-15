@@ -3,9 +3,9 @@ var ExtractJwt = require('passport-jwt').ExtractJwt;
 var LocalStrategy    = require('passport-local').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var User = require('../model/user');
+var TwitterUser = require('../model/twitter');
 var config = require('../config/config');
 var auth = require('../config/auth');
-var passport = require('../config/passport');
 
 
 module.exports = function(passport){
@@ -52,7 +52,7 @@ module.exports = function(passport){
     // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
 
-            User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+            TwitterUser.findOne({ 'twitter.id' : profile.id }, function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -64,7 +64,7 @@ module.exports = function(passport){
                     return done(null, user); // user found, return that user
                 } else {
                     // if there is no user, create them
-                    var newUser                 = new User();
+                    var newUser                 = new TwitterUser();
 
                     // set all of the user data that we need
                     newUser.twitter.id          = profile.id;
@@ -83,5 +83,15 @@ module.exports = function(passport){
 
     });
     }));
+    passport.use(new TwitterTokenStrategy({
+        consumerKey: auth.twitterAuth.consumerKey,
+        consumerSecret: auth.twitterAuth.consumerSecret,
+        includeEmail: true
+      },
+      function (token, tokenSecret, profile, done) {
+        TwitterUser.upsertTwitterUser(token, tokenSecret, profile, function(err, user) {
+          return done(err, user);
+        });
+      }));
 
 };

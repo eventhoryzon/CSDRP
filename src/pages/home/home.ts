@@ -14,7 +14,7 @@ export class HomePage {
   }
   twitterAuth(){
   this.http.get('/auth/twitter').subscribe(response => {
-    console.log('GET Response:', response);
+    console.log('GET Response data :', response);
 });
   }
 }

@@ -5,8 +5,10 @@ var app = express();
 var port = process.env.PORT || 8080;
 var morgan = require("morgan");
 var mongoose = require("mongoose");
+var expressJwt = require('express-jwt');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var jwt = require('jsonwebtoken')
 var multer = require('multer');
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -19,6 +21,7 @@ var TwitterStrategy = require("passport-twitter").Strategy;
 
 require('./model/db');
 require('./model/user');
+require('./model/twitter');
 
 mongoose.connection.on('open' ,  function(err){
     if(err) {
@@ -37,7 +40,14 @@ mongoose.connection.on('open' ,  function(err){
     app.use(passport.initialize());
     app.use(passportconfig);
    
-
+    var corsOption = {
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+        exposedHeaders: ['x-auth-token']
+      };
+      app.use(cors(corsOption));
+      
 /* Manage CORS Access for ALL requests/responses */
 app.use(function(req, res, next) {  
      /* Allow access from any requesting client */
